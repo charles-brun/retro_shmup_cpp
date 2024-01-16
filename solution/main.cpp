@@ -35,6 +35,7 @@ int WinMain()
 			}
 		}
 	}
+	gameThread.terminate();
 
 	return 0;
 }

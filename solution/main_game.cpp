@@ -39,7 +39,7 @@ void MainGame::HandleInputs()
 		}
 		player->Move(dir);
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 		{
 			player->TryToShoot();
 		}
