@@ -4,10 +4,10 @@
 #include "assets_manager.h"
 #include "utils.h"
 
-int main()
+int WinMain()
 {
 	sf::Vector2f windowSize = Utils::getWindowSize();
-	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Simple 2D Game");
+	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Retro Shmup", sf::Style::Titlebar+sf::Style::Close);
 	AssetsManager assetsManager;
 	assetsManager.Load();
 	MainGame mainGame(&window, &assetsManager);

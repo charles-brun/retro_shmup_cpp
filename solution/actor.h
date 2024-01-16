@@ -15,10 +15,24 @@ public:
 	virtual void Move(sf::Vector2f dir);
 	virtual void SetPosition(sf::Vector2f pos);
 	virtual sf::Vector2f GetPosition();
+	virtual sf::Vector2f GetCenteredPosition();
+	virtual void TryToShoot();
+	virtual void ResetShootCD();
+	float shootTimer = 0;
+	float shootCD = 0.2f;
+	bool shoot = false;
 	float speed = 30.0f;
-	sf::Vector2f velocity;
+	bool toDelete = false;
+	sf::Vector2f velocity = { 0, 0 };
 	sf::Sprite sprite;
 	std::string texture_name;
+	static enum Side {
+		Ally,
+		Enemy,
+	};
+	virtual void SetSide(Actor::Side _side);
+	Actor::Side GetSide();
 protected:
 	sf::Vector2f position;
+	Actor::Side side;
 };

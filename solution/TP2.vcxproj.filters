@@ -24,7 +24,7 @@
     <ClCompile Include="actor.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="spawner.cpp">
+    <ClCompile Include="actors_manager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
@@ -34,6 +34,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="utils.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="shot.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +50,7 @@
     <ClInclude Include="actor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="spawner.h">
+    <ClInclude Include="actors_manager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
@@ -59,9 +62,15 @@
     <ClInclude Include="utils.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="shot.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="player.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="shot.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>

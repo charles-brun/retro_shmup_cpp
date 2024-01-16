@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "actor.h"
-#include "spawner.h"
+#include "actors_manager.h"
 #include "assets_manager.h"
 
 class MainGame {
@@ -9,7 +9,7 @@ public:
 	sf::RenderWindow* mainWindow;
 	bool running;
 	AssetsManager* assetsManager;
-	Spawner* spawner;
+	ActorsManager* actorsManager;
 	Player* player;
 
 	MainGame(sf::RenderWindow* window, AssetsManager* assets);

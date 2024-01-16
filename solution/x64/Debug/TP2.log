@@ -1,4 +1,18 @@
-﻿  main_game.cpp
-  TP2.vcxproj -> D:\ynov\cpp_jeux2D\TP2\x64\Debug\TP2.exe
+﻿D:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (TP2.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
+  main.cpp
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actor.h(32,3): warning C4091: 'static ' : ignoré à gauche de 'Actor::Side' quand aucune variable n'est déclarée
+  (compiler le fichier source 'main.cpp')
+  
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,64): warning C4244: 'argument' : conversion de 'T' en 'unsigned int', perte possible de données
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,64): warning C4244:         with
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,64): warning C4244:         [
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,64): warning C4244:             T=float
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,64): warning C4244:         ]
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,50): warning C4244: 'argument' : conversion de 'T' en 'unsigned int', perte possible de données
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,50): warning C4244:         with
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,50): warning C4244:         [
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,50): warning C4244:             T=float
+D:\ynov\cpp_jeux2D\retro_shmup\solution\main.cpp(10,50): warning C4244:         ]
+  TP2.vcxproj -> D:\ynov\cpp_jeux2D\retro_shmup\solution\x64\Debug\retro_shmup.exe
   'pwsh.exe' n'est pas reconnu en tant que commande interne
   ou externe, un programme exécutable ou un fichier de commandes.

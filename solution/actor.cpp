@@ -15,6 +15,10 @@ void Actor::Update(float deltaTime)
 {
 	position += velocity * deltaTime * speed * Utils::globalScale;
 	sprite.setPosition(position);
+	if (shootTimer > 0)
+	{
+		shootTimer-=deltaTime;
+	}
 }
 
 void Actor::Draw()
@@ -40,4 +44,35 @@ void Actor::SetPosition(sf::Vector2f pos)
 sf::Vector2f Actor::GetPosition()
 {
 	return position;
+}
+
+sf::Vector2f Actor::GetCenteredPosition()
+{
+	sf::Vector2u spriteSize = sprite.getTexture()->getSize() * (unsigned)Utils::globalScale;
+	sf::Vector2f offset = { (float)spriteSize.x/2, (float)spriteSize.y/2 };
+	return position + offset;
+}
+
+void Actor::TryToShoot()
+{
+	if (shootTimer <= 0)
+	{
+		shoot = true;
+	}
+}
+
+void Actor::ResetShootCD()
+{
+	shoot = false;
+	shootTimer = shootCD;
+}
+
+void Actor::SetSide(Actor::Side _side)
+{
+	side = _side;
+}
+
+Actor::Side Actor::GetSide()
+{
+	return side;
 }

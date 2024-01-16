@@ -113,7 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -139,7 +139,8 @@
     <ClCompile Include="main_game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="spawner.cpp" />
+    <ClCompile Include="actors_manager.cpp" />
+    <ClCompile Include="shot.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,11 +151,13 @@
     <ClInclude Include="assets_manager.h" />
     <ClInclude Include="main_game.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="spawner.h" />
+    <ClInclude Include="actors_manager.h" />
+    <ClInclude Include="shot.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="player.png" />
+    <Image Include="shot.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

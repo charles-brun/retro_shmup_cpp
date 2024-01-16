@@ -6,8 +6,9 @@
 
 Player::Player() : Actor{}
 {
+	side = Ally;
 	texture_name = "player";
-	speed = 40.0;
+	speed = 60.0;
 }
 
 void Player::Load(AssetsManager* assetsManager)
@@ -22,6 +23,7 @@ void Player::Update(float deltaTime)
 
 void Player::Draw()
 {
+	Actor::Draw();
 }
 
 void Player::Move(sf::Vector2f dir)

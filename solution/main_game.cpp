@@ -7,8 +7,8 @@
 MainGame::MainGame(sf::RenderWindow* window, AssetsManager* assets) : mainWindow(window), assetsManager(assets)
 {
 	running = true;
-	spawner = new Spawner(window, assets);
-	player = spawner->player;
+	actorsManager = new ActorsManager(window, assets);
+	player = actorsManager->player;
 }
 
 void MainGame::HandleInputs()
@@ -38,19 +38,24 @@ void MainGame::HandleInputs()
 			dir.y *= 0.7f;
 		}
 		player->Move(dir);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
+		{
+			player->TryToShoot();
+		}
 	}
 }
 
 void MainGame::Update(float deltaTime)
 {
-	spawner->Update(deltaTime);
+	actorsManager->Update(deltaTime);
 }
 
 void MainGame::Draw()
 {
 	sf::Color color(119, 146, 114);
 	mainWindow->clear(color);
-	spawner->Draw();
+	actorsManager->Draw();
 	mainWindow->display();
 }
 
@@ -70,5 +75,5 @@ void MainGame::Run()
 
 MainGame::~MainGame()
 {
-	delete spawner;
+	delete actorsManager;
 }
