@@ -48,9 +48,24 @@ sf::Vector2f Actor::GetPosition()
 
 sf::Vector2f Actor::GetCenteredPosition()
 {
-	sf::Vector2u spriteSize = sprite.getTexture()->getSize() * (unsigned)Utils::globalScale;
-	sf::Vector2f offset = { (float)spriteSize.x/2, (float)spriteSize.y/2 };
+	sf::Vector2f offset = { GetSpriteSize().x / 2, GetSpriteSize().y / 2};
 	return position + offset;
+}
+
+sf::Vector2f Actor::GetSpriteSize()
+{
+	sf::Vector2u spriteSize = { 0, 0 };
+	if (sprite.getTexture() != NULL)
+	{
+		spriteSize = sprite.getTexture()->getSize() * (unsigned)Utils::globalScale;
+	}
+	return sf::Vector2f((float)spriteSize.x, (float)spriteSize.y);
+}
+
+sf::FloatRect Actor::GetBounds()
+{
+	sf::Vector2f rect = GetSpriteSize();
+	return sf::FloatRect(position.x, position.y, rect.x, rect.y);
 }
 
 void Actor::TryToShoot()
@@ -65,6 +80,11 @@ void Actor::ResetShootCD()
 {
 	shoot = false;
 	shootTimer = shootCD;
+}
+
+void Actor::Collide()
+{
+	toDelete = true;
 }
 
 void Actor::SetSide(Actor::Side _side)

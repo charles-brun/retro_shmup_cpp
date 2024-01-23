@@ -4,6 +4,7 @@
 #include "actor.h"
 #include "assets_manager.h"
 #include "player.h"
+#include "level.h"
 
 class ActorsManager
 {
@@ -14,7 +15,9 @@ public:
 	std::vector<Actor*> actors;
 	std::vector<Actor*> actorsToRemove;
 	Player* player;
+	Level* level;
 	void AddActor(Actor* actor, sf::Vector2f pos);
+	void AddEnemy(Enemy::Type type);
 	void AddActorToRemove(Actor* actor);
 	void DeleteActorsToRemove();
 	void Update(float deltaTime);

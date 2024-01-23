@@ -16,8 +16,11 @@ public:
 	virtual void SetPosition(sf::Vector2f pos);
 	virtual sf::Vector2f GetPosition();
 	virtual sf::Vector2f GetCenteredPosition();
+	virtual sf::Vector2f GetSpriteSize();
+	virtual sf::FloatRect GetBounds();
 	virtual void TryToShoot();
 	virtual void ResetShootCD();
+	virtual void Collide();
 	float shootTimer = 0;
 	float shootCD = 0.2f;
 	bool shoot = false;

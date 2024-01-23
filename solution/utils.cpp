@@ -1,6 +1,6 @@
 #include "utils.h"
 
-float Utils::globalScale = 6.0f;
+float Utils::globalScale = 3.0f;
 
 sf::Vector2f Utils::getWindowSize()
 {

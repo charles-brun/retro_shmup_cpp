@@ -6,17 +6,27 @@
 
 ActorsManager::ActorsManager(sf::RenderWindow* window, AssetsManager* assets) : mainWindow(window), assetsManager(assets)
 {
+	level = new Level();
 	player = new Player();
 	player->Load(assetsManager);
 	sf::Vector2u spriteSize = player->sprite.getTexture()->getSize() * (unsigned)Utils::globalScale;
 	
 	AddActor(player, { (float)spriteSize.x, Utils::getWindowSize().y / 2 });
+	AddEnemy(Enemy::Rocket);
 }
 
 void ActorsManager::AddActor(Actor* actor, sf::Vector2f pos)
 {
 	actors.push_back(actor);
 	actor->SetPosition(pos);
+}
+
+void ActorsManager::AddEnemy(Enemy::Type type)
+{
+	Enemy* enemy = level->Spawn(type);
+	enemy->Load(assetsManager);
+	int rdm = std::rand() % (int)(Utils::getWindowSize().y);
+	AddActor(enemy, sf::Vector2f(Utils::getWindowSize().x, rdm));
 }
 
 void ActorsManager::AddActorToRemove(Actor* actor)
@@ -47,11 +57,22 @@ void ActorsManager::Update(float deltaTime)
 		{
 			Shot* shot = new Shot();
 			shot->Load(assetsManager);
-			sf::Vector2u spriteSize = shot->sprite.getTexture()->getSize() * (unsigned)Utils::globalScale;
 			shot->SetSide(actors[i]->GetSide());
 			sf::Vector2f actorPos = actors[i]->GetCenteredPosition();
-			AddActor(shot, { actorPos.x, actorPos.y - (float)spriteSize.y / 2 });
+			AddActor(shot, { actorPos.x, actorPos.y - shot->GetSpriteSize().y / 2});
 			actors[i]->ResetShootCD();
+		}
+		// Check collisions
+		for (int j = 0; j < actors.size(); ++j)
+		{
+			if (actors[i]->GetSide() != actors[j]->GetSide())
+			{
+				if (actors[i]->GetBounds().intersects(actors[j]->GetBounds()))
+				{
+					actors[i]->Collide();
+					actors[j]->Collide();
+				}
+			}
 		}
 		if (actors[i]->toDelete)
 		{
@@ -94,4 +115,5 @@ ActorsManager::~ActorsManager()
 		AddActorToRemove(actors[i]);
 	}
 	DeleteActorsToRemove();
+	delete level;
 }

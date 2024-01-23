@@ -14,6 +14,7 @@ int WinMain()
 	sf::Thread gameThread(&MainGame::Run, &mainGame);
 
 	window.setActive(false);
+
 	gameThread.launch();
 
 	while (window.isOpen())

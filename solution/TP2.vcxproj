@@ -136,10 +136,13 @@
   <ItemGroup>
     <ClCompile Include="actor.cpp" />
     <ClCompile Include="assets_manager.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="level.cpp" />
     <ClCompile Include="main_game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="actors_manager.cpp" />
+    <ClCompile Include="rocket.cpp" />
     <ClCompile Include="shot.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
@@ -149,15 +152,22 @@
   <ItemGroup>
     <ClInclude Include="actor.h" />
     <ClInclude Include="assets_manager.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="level.h" />
     <ClInclude Include="main_game.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="actors_manager.h" />
+    <ClInclude Include="rocket.h" />
     <ClInclude Include="shot.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="player.png" />
+    <Image Include="rocket.png" />
     <Image Include="shot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\..\Users\brunc\Downloads\munro.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

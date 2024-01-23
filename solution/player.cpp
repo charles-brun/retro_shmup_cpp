@@ -6,7 +6,7 @@
 
 Player::Player() : Actor{}
 {
-	side = Ally;
+	SetSide(Side::Ally);
 	texture_name = "player";
 	speed = 60.0;
 }
