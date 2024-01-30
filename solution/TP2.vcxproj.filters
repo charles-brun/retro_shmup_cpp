@@ -48,6 +48,12 @@
     <ClCompile Include="level.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="ui_manager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="score_manager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="vcpkg.json" />
@@ -83,6 +89,12 @@
     <ClInclude Include="level.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="ui_manager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="score_manager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="player.png">
@@ -96,7 +108,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="..\..\..\..\Users\brunc\Downloads\munro.ttf">
+    <Font Include="munro.ttf">
       <Filter>Fichiers de ressources</Filter>
     </Font>
   </ItemGroup>

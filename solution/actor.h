@@ -20,12 +20,17 @@ public:
 	virtual sf::FloatRect GetBounds();
 	virtual void TryToShoot();
 	virtual void ResetShootCD();
-	virtual void Collide();
+	virtual void TakeDamage(int _damage);
+	virtual void Destroy();
+	int hitPoints = 1;
+	int scoreValue = 0;
+	int damage = 0;
 	float shootTimer = 0;
 	float shootCD = 0.2f;
 	bool shoot = false;
 	float speed = 30.0f;
 	bool toDelete = false;
+	bool alive = true;
 	sf::Vector2f velocity = { 0, 0 };
 	sf::Sprite sprite;
 	std::string texture_name;

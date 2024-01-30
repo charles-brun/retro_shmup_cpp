@@ -19,6 +19,10 @@ void Actor::Update(float deltaTime)
 	{
 		shootTimer-=deltaTime;
 	}
+	if (hitPoints <= 0)
+	{
+		Destroy();
+	}
 }
 
 void Actor::Draw()
@@ -82,7 +86,17 @@ void Actor::ResetShootCD()
 	shootTimer = shootCD;
 }
 
-void Actor::Collide()
+void Actor::TakeDamage(int _damage)
+{
+	hitPoints -= _damage;
+	if (hitPoints < 0)
+	{
+		hitPoints = 0;
+		alive = false;
+	}
+}
+
+void Actor::Destroy()
 {
 	toDelete = true;
 }

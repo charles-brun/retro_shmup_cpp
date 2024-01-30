@@ -5,12 +5,17 @@ class Level
 {
 public:
 	Level();
-	virtual void Update(float deltaTime);
-	virtual Enemy* Spawn(Enemy::Type type);
-	virtual void ResetSpawnCD();
+	void Update(float deltaTime);
+	Enemy* Spawn(Enemy::Type type);
+	bool CanSpawn();
+	void ResetSpawnCD();
+	void Initialize(int enemyNumber, int _frequency = 60);
+	Enemy::Type GetNextEnemy();
+	std::vector<Enemy::Type> enemyList;
 	int currentSpawnIndex = 0;
+	int frequency = 60;
 	float spawnTimer = 0;
-	float spawnCD = 0.2f;
+	float spawnCD = 60.0f;
 	bool spawn = false;
 };
 

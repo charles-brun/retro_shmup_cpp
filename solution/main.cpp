@@ -3,6 +3,7 @@
 #include "main_game.h"
 #include "assets_manager.h"
 #include "utils.h"
+#include "score_manager.h"
 
 int WinMain()
 {
@@ -10,7 +11,9 @@ int WinMain()
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Retro Shmup", sf::Style::Titlebar+sf::Style::Close);
 	AssetsManager assetsManager;
 	assetsManager.Load();
-	MainGame mainGame(&window, &assetsManager);
+	UIManager uiManager(&window);
+	ScoreManager scoreManager(&uiManager);
+	MainGame mainGame(&window, &assetsManager, &scoreManager);
 	sf::Thread gameThread(&MainGame::Run, &mainGame);
 
 	window.setActive(false);

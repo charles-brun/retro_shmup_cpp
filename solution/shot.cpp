@@ -5,6 +5,7 @@ Shot::Shot()
 {
 	texture_name = "shot";
 	speed = 100.0f;
+	damage = 1;
 }
 
 void Shot::Update(float deltaTime)

@@ -4,15 +4,15 @@
 #include "utils.h"
 #include "shot.h"
 
-ActorsManager::ActorsManager(sf::RenderWindow* window, AssetsManager* assets) : mainWindow(window), assetsManager(assets)
+ActorsManager::ActorsManager(sf::RenderWindow* window, AssetsManager* assets, ScoreManager* score) : mainWindow(window), assetsManager(assets), scoreManager(score)
 {
 	level = new Level();
 	player = new Player();
 	player->Load(assetsManager);
-	sf::Vector2u spriteSize = player->sprite.getTexture()->getSize() * (unsigned)Utils::globalScale;
+	sf::Vector2f spriteSize = player->GetSpriteSize();
 	
-	AddActor(player, { (float)spriteSize.x, Utils::getWindowSize().y / 2 });
-	AddEnemy(Enemy::Rocket);
+	AddActor(player, { spriteSize.x, Utils::getWindowSize().y / 2 });
+	level->Initialize(50);
 }
 
 void ActorsManager::AddActor(Actor* actor, sf::Vector2f pos)
@@ -25,8 +25,8 @@ void ActorsManager::AddEnemy(Enemy::Type type)
 {
 	Enemy* enemy = level->Spawn(type);
 	enemy->Load(assetsManager);
-	int rdm = std::rand() % (int)(Utils::getWindowSize().y);
-	AddActor(enemy, sf::Vector2f(Utils::getWindowSize().x, rdm));
+	int rdm = Utils::getMarginTop() + std::rand() % (int)(Utils::getMarginBot() - enemy->GetSpriteSize().y - Utils::getMarginTop());
+	AddActor(enemy, sf::Vector2f(Utils::getWindowSize().x - 50, rdm));
 }
 
 void ActorsManager::AddActorToRemove(Actor* actor)
@@ -46,9 +46,10 @@ void ActorsManager::DeleteActorsToRemove()
 
 void ActorsManager::Update(float deltaTime)
 {
-	if (actors.size() > 30)
+	level->Update(deltaTime);
+	if (level->CanSpawn())
 	{
-		mainWindow->close();
+		AddEnemy(level->GetNextEnemy());
 	}
 	for (int i = 0; i < actors.size(); ++i)
 	{
@@ -69,14 +70,22 @@ void ActorsManager::Update(float deltaTime)
 			{
 				if (actors[i]->GetBounds().intersects(actors[j]->GetBounds()))
 				{
-					actors[i]->Collide();
-					actors[j]->Collide();
+					actors[i]->TakeDamage(actors[j]->damage);
+					actors[j]->TakeDamage(actors[i]->damage);
 				}
 			}
 		}
 		if (actors[i]->toDelete)
 		{
 			AddActorToRemove(actors[i]);
+		}
+	}
+
+	for (int i = 0; i < actorsToRemove.size(); ++i)
+	{
+		if (!actorsToRemove[i]->alive)
+		{
+			scoreManager->IncreaseScore(actorsToRemove[i]->scoreValue);
 		}
 	}
 	DeleteActorsToRemove();
@@ -115,5 +124,6 @@ ActorsManager::~ActorsManager()
 		AddActorToRemove(actors[i]);
 	}
 	DeleteActorsToRemove();
+	delete player;
 	delete level;
 }

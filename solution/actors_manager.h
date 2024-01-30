@@ -3,15 +3,17 @@
 #include <vector>
 #include "actor.h"
 #include "assets_manager.h"
+#include "score_manager.h"
 #include "player.h"
 #include "level.h"
 
 class ActorsManager
 {
 public:
-	ActorsManager(sf::RenderWindow* window, AssetsManager* assets);
+	ActorsManager(sf::RenderWindow* window, AssetsManager* assets, ScoreManager* score);
 	sf::RenderWindow* mainWindow;
 	AssetsManager* assetsManager;
+	ScoreManager* scoreManager;
 	std::vector<Actor*> actors;
 	std::vector<Actor*> actorsToRemove;
 	Player* player;

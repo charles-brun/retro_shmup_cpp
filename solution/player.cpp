@@ -29,12 +29,12 @@ void Player::Draw()
 void Player::Move(sf::Vector2f dir)
 {
 	sf::Vector2f newDir = dir;
-	sf::Vector2u size = sprite.getTexture()->getSize() * (unsigned)Utils::globalScale;
+	sf::Vector2f size = GetSpriteSize();
 	if ((dir.x < 0 && position.x <= 0) || (dir.x > 0 && position.x + size.x >= Utils::getWindowSize().x))
 	{
 		newDir.x = 0;
 	}
-	if ((dir.y < 0 && position.y <= 0) || (dir.y > 0 && position.y + size.y >= Utils::getWindowSize().y))
+	if ((dir.y < 0 && position.y <= Utils::getMarginTop()) || (dir.y > 0 && position.y + size.y >= Utils::getMarginBot()))
 	{
 		newDir.y = 0;
 	}

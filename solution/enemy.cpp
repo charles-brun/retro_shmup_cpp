@@ -4,12 +4,13 @@
 Enemy::Enemy()
 {
 	SetSide(Side::Enemy);
+	damage = 1;
 }
 
 void Enemy::Update(float deltaTime)
 {
 	Actor::Update(deltaTime);
-	if (position.x + (sprite.getTexture()->getSize().x * Utils::globalScale) < 0)
+	if (position.x + (GetBounds().getSize().x * Utils::globalScale) < 0)
 	{
 		toDelete = true;
 	}

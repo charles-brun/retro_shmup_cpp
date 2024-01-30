@@ -4,10 +4,11 @@
 #include "main_game.h"
 #include <iostream>
 
-MainGame::MainGame(sf::RenderWindow* window, AssetsManager* assets) : mainWindow(window), assetsManager(assets)
+MainGame::MainGame(sf::RenderWindow* window, AssetsManager* assets, ScoreManager* score) : mainWindow(window), assetsManager(assets), scoreManager(score)
 {
 	running = true;
-	actorsManager = new ActorsManager(window, assets);
+	actorsManager = new ActorsManager(window, assets, score);
+	uiManager = score->uiManager;
 	player = actorsManager->player;
 }
 
@@ -43,6 +44,11 @@ void MainGame::HandleInputs()
 		{
 			player->TryToShoot();
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
+		{
+			score += 10;
+			uiManager->UpdateScore(score);
+		}
 	}
 }
 
@@ -56,6 +62,7 @@ void MainGame::Draw()
 	sf::Color color(119, 146, 114);
 	mainWindow->clear(color);
 	actorsManager->Draw();
+	uiManager->Draw();
 	mainWindow->display();
 }
 

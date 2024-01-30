@@ -9,6 +9,7 @@ public:
     static enum Type 
     {
         Rocket,
+        TYPE_SIZE,
     };
 };
 

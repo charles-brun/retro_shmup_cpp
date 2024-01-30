@@ -5,6 +5,7 @@
 Rocket::Rocket()
 {
 	texture_name = "rocket";
-	speed = 60.0f;
+	speed = 90.0f;
+	scoreValue = 10;
 	Move(sf::Vector2f(-1, 0));
 }
