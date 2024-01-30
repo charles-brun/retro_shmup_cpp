@@ -19,6 +19,13 @@ void Actor::Update(float deltaTime)
 	{
 		shootTimer-=deltaTime;
 	}
+	if (vulnTimer > 0)
+	{
+		vulnTimer -= deltaTime;
+	}
+	else {
+		invulnerable = false;
+	}
 	if (hitPoints <= 0)
 	{
 		Destroy();
@@ -88,11 +95,16 @@ void Actor::ResetShootCD()
 
 void Actor::TakeDamage(int _damage)
 {
-	hitPoints -= _damage;
-	if (hitPoints < 0)
+	if (!invulnerable)
 	{
-		hitPoints = 0;
-		alive = false;
+		hitPoints -= _damage;
+		if (hitPoints <= 0)
+		{
+			hitPoints = 0;
+			alive = false;
+		}
+		invulnerable = true;
+		vulnTimer = vulnCD;
 	}
 }
 

@@ -11,6 +11,7 @@ void AssetsManager::Load()
 		}
 		textures[paths.first] = texture;
 	}
+	font.loadFromFile(font_path);
 }
 
 AssetsManager::~AssetsManager()

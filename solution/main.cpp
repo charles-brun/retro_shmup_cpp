@@ -11,35 +11,12 @@ int WinMain()
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Retro Shmup", sf::Style::Titlebar+sf::Style::Close);
 	AssetsManager assetsManager;
 	assetsManager.Load();
-	UIManager uiManager(&window);
+	UIManager uiManager(&window, &assetsManager);
 	ScoreManager scoreManager(&uiManager);
 	MainGame mainGame(&window, &assetsManager, &scoreManager);
-	sf::Thread gameThread(&MainGame::Run, &mainGame);
-
-	window.setActive(false);
-
-	gameThread.launch();
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-			else if (event.type == sf::Event::KeyPressed)
-			{
-				if (event.key.code == sf::Keyboard::Escape)
-				{
-					window.close();
-				}
-			}
-		}
-	}
-	gameThread.terminate();
+	window.setActive(true);
+	window.setKeyRepeatEnabled(false);
+	mainGame.Run();
 
 	return 0;
 }

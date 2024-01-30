@@ -3,12 +3,14 @@
 #include "main_game.h"
 #include "player.h"
 #include "utils.h"
+#include "math.h"
 
 Player::Player() : Actor{}
 {
 	SetSide(Side::Ally);
 	texture_name = "player";
 	speed = 60.0;
+	vulnCD = 1.2f;
 }
 
 void Player::Load(AssetsManager* assetsManager)
@@ -19,6 +21,21 @@ void Player::Load(AssetsManager* assetsManager)
 void Player::Update(float deltaTime)
 {
 	Actor::Update(deltaTime);
+	if (invulnerable)
+	{
+		float time = ceilf(vulnTimer*10);
+		if ((int)time % 2 == 0)
+		{
+			sprite.setColor(sf::Color(255, 255, 255, 255));
+		}
+		else 
+		{
+			sprite.setColor(sf::Color(0, 0, 0, 0));
+		}
+	}
+	else {
+		sprite.setColor(sf::Color(255, 255, 255, 255));
+	}
 }
 
 void Player::Draw()

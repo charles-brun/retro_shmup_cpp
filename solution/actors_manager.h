@@ -25,6 +25,7 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 	void RemoveActorFromList(Actor* actorToRemove);
+	void Reset();
 	~ActorsManager();
 };
 

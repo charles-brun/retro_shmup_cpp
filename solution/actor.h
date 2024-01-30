@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics.hpp>
 #include "assets_manager.h"
 
 class Actor
@@ -22,6 +21,9 @@ public:
 	virtual void ResetShootCD();
 	virtual void TakeDamage(int _damage);
 	virtual void Destroy();
+	bool invulnerable = false;
+	float vulnTimer = 0;
+	float vulnCD = 0.1f;
 	int hitPoints = 1;
 	int scoreValue = 0;
 	int damage = 0;

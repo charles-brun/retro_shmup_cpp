@@ -31,7 +31,10 @@ void ActorsManager::AddEnemy(Enemy::Type type)
 
 void ActorsManager::AddActorToRemove(Actor* actor)
 {
-	actorsToRemove.push_back(actor);
+	if (actor != player)
+	{
+		actorsToRemove.push_back(actor);
+	}
 }
 
 void ActorsManager::DeleteActorsToRemove()
@@ -71,7 +74,10 @@ void ActorsManager::Update(float deltaTime)
 				if (actors[i]->GetBounds().intersects(actors[j]->GetBounds()))
 				{
 					actors[i]->TakeDamage(actors[j]->damage);
-					actors[j]->TakeDamage(actors[i]->damage);
+					if (actors[i] == player)
+					{
+						scoreManager->UpdateLives(player->hitPoints);
+					}
 				}
 			}
 		}
@@ -117,6 +123,22 @@ void ActorsManager::RemoveActorFromList(Actor* actorToRemove)
 	}
 }
 
+void ActorsManager::Reset()
+{
+	for (int i = 0; i < actors.size(); i++)
+	{
+		AddActorToRemove(actors[i]);
+	}
+	DeleteActorsToRemove();
+	delete level;
+	level = new Level();
+	level->Initialize(50);
+	player->hitPoints = 3;
+	scoreManager->UpdateLives(player->hitPoints);
+	player->alive = true;
+	player->SetPosition({ player->GetSpriteSize().x, Utils::getWindowSize().y / 2 });
+}
+
 ActorsManager::~ActorsManager()
 {
 	for (int i = 0; i < actors.size(); i++)
@@ -124,6 +146,6 @@ ActorsManager::~ActorsManager()
 		AddActorToRemove(actors[i]);
 	}
 	DeleteActorsToRemove();
-	delete player;
 	delete level;
+	delete player;
 }
