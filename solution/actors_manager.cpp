@@ -12,7 +12,7 @@ ActorsManager::ActorsManager(sf::RenderWindow* window, AssetsManager* assets, Sc
 	sf::Vector2f spriteSize = player->GetSpriteSize();
 	
 	AddActor(player, { spriteSize.x, Utils::getWindowSize().y / 2 });
-	level->Initialize(50);
+	level->Initialize();
 }
 
 void ActorsManager::AddActor(Actor* actor, sf::Vector2f pos)
@@ -27,6 +27,8 @@ void ActorsManager::AddEnemy(Enemy::Type type)
 	enemy->Load(assetsManager);
 	int rdm = Utils::getMarginTop() + std::rand() % (int)(Utils::getMarginBot() - enemy->GetSpriteSize().y - Utils::getMarginTop());
 	AddActor(enemy, sf::Vector2f(Utils::getWindowSize().x - 50, rdm));
+	enemies.push_back(enemy);
+	aliveEnemies++;
 }
 
 void ActorsManager::AddActorToRemove(Actor* actor)
@@ -42,6 +44,15 @@ void ActorsManager::DeleteActorsToRemove()
 	for (int i = 0; i < actorsToRemove.size(); ++i)
 	{
 		RemoveActorFromList(actorsToRemove[i]);
+		if (dynamic_cast<Enemy*>(actorsToRemove[i]) != nullptr)
+		{
+			RemoveEnemyFromList(dynamic_cast<Enemy*>(actorsToRemove[i]));
+			aliveEnemies--;
+			if (level->enemyList.size() == 0 && aliveEnemies <= 0)
+			{
+				levelEnded = true;
+			}
+		}
 		delete actorsToRemove[i];
 	}
 	actorsToRemove.clear();
@@ -123,6 +134,23 @@ void ActorsManager::RemoveActorFromList(Actor* actorToRemove)
 	}
 }
 
+void ActorsManager::RemoveEnemyFromList(Enemy* enemyToRemove)
+{
+	int index = -1;
+	for (int i = 0; i < enemies.size(); i++)
+	{
+		if (enemies[i] == enemyToRemove)
+		{	
+			index = i;
+			break;
+		}
+	}
+	if (index != -1)
+	{
+		enemies.erase(enemies.begin() + index);
+	}
+}
+
 void ActorsManager::Reset()
 {
 	for (int i = 0; i < actors.size(); i++)
@@ -132,11 +160,28 @@ void ActorsManager::Reset()
 	DeleteActorsToRemove();
 	delete level;
 	level = new Level();
-	level->Initialize(50);
+	level->Initialize();
 	player->hitPoints = 3;
 	scoreManager->UpdateLives(player->hitPoints);
 	player->alive = true;
 	player->SetPosition({ player->GetSpriteSize().x, Utils::getWindowSize().y / 2 });
+	levelEnded = false;
+}
+
+void ActorsManager::NextLevel()
+{
+	for (int i = 0; i < actors.size(); i++)
+	{
+		AddActorToRemove(actors[i]);
+	}
+	DeleteActorsToRemove();
+	delete level;
+	level = new Level();
+	level->Initialize();
+	player->GainLives(1);
+	scoreManager->UpdateLives(player->hitPoints);
+	player->SetPosition({ player->GetSpriteSize().x, Utils::getWindowSize().y / 2 });
+	levelEnded = false;
 }
 
 ActorsManager::~ActorsManager()

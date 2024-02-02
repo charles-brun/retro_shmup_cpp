@@ -7,10 +7,10 @@ Level::Level()
 {
 }
 
-void Level::Initialize(int enemyNumber, int _frequency)
+void Level::Initialize(int _enemyNumber, int _frequency)
 {
 	frequency = _frequency;
-	for (int i = 0; i < enemyNumber; ++i)
+	for (int i = 0; i < _enemyNumber; ++i)
 	{
 		int rdm = std::rand() % Enemy::TYPE_SIZE;
 		enemyList.push_back(static_cast<Enemy::Type>(rdm));

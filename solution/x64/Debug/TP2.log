@@ -1,3 +1,15 @@
 ﻿D:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (TP2.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
-  pause_menu.cpp
+  actors_manager.cpp
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actor.h(42,3): warning C4091: 'static ' : ignoré à gauche de 'Actor::Side' quand aucune variable n'est déclarée
+  (compiler le fichier source 'actors_manager.cpp')
+  
+D:\ynov\cpp_jeux2D\retro_shmup\solution\enemy.h(13,6): warning C4091: 'static ' : ignoré à gauche de 'Enemy::Type' quand aucune variable n'est déclarée
+  (compiler le fichier source 'actors_manager.cpp')
+  
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actors_manager.cpp(28,10): warning C4244: 'initialisation' : conversion de 'float' en 'int', perte possible de données
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actors_manager.cpp(29,62): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actors_manager.cpp(29,62): warning C4244:         with
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actors_manager.cpp(29,62): warning C4244:         [
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actors_manager.cpp(29,62): warning C4244:             T=float
+D:\ynov\cpp_jeux2D\retro_shmup\solution\actors_manager.cpp(29,62): warning C4244:         ]
   TP2.vcxproj -> D:\ynov\cpp_jeux2D\retro_shmup\solution\x64\Debug\retro_shmup.exe

@@ -11,7 +11,8 @@ MainGame::MainGame(sf::RenderWindow* window, AssetsManager* assets, ScoreManager
 	scoreManager = score;
 	uiManager = score->uiManager;
 	mainMenu = new MainMenu(window, assets);
-	pauseMenu = new PauseMenu(window, assets);	
+	pauseMenu = new PauseMenu(window, assets);
+	winMenu = new WinMenu(window, assets);
 	gameOverMenu = new GameOverMenu(window, assets);
 	player = actorsManager->player;
 	currentState = StartMenu;
@@ -22,24 +23,28 @@ void MainGame::HandleInputs()
 {
 	if (currentState == GamePlay)
 	{
-		if (player != nullptr && canNavigate)
+		if (player != nullptr && canMove)
 		{
 			sf::Vector2f dir = { 0, 0 };
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 			{
 				dir.x += 1.0;
+				canNavigate = false;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
 			{
 				dir.x -= 1.0;
+				canNavigate = false;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 			{
 				dir.y += 1.0;
+				canNavigate = false;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
 			{
 				dir.y -= 1.0;
+				canNavigate = false;
 			}
 			if (abs(dir.x) > 0 && abs(dir.y) > 0)
 			{
@@ -51,13 +56,14 @@ void MainGame::HandleInputs()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 			{
 				player->TryToShoot();
+				canNavigate = false;
 			}
 		}
 	}
 	else
 	{
 		if (canNavigate) {
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
 			{
 				MenuChoice::Action action = currentMenu->GetChoice();
 				switch (action)
@@ -71,21 +77,27 @@ void MainGame::HandleInputs()
 				case MenuChoice::Continue:
 					currentState = GamePlay;
 					break;
+				case MenuChoice::NextLevel:
+					StartNextLevel();
+					break;
 				default:
 					break;
 				}
+				canMove = false;
 				canNavigate = false;
 				return;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 			{
 				currentMenu->NextChoice();
+				canMove = false;
 				canNavigate = false;
 				return;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
 			{
 				currentMenu->PrevChoice();
+				canMove = false;
 				canNavigate = false;
 				return;
 			}
@@ -109,10 +121,20 @@ void MainGame::Update(float deltaTime)
 				gameOverMenu->SetScore(scoreManager->score);
 			}
 			currentState = GameOver;
+		} else if (actorsManager->levelEnded)
+		{
+			if (currentState != NextLevel)
+			{
+				winMenu->SetScore(scoreManager->score);
+			}
+			currentState = NextLevel;
 		}
 		break;
 	case MainGame::Pause:
 		currentMenu = pauseMenu;
+		break;
+	case MainGame::NextLevel:
+		currentMenu = winMenu;
 		break;
 	case MainGame::GameOver:
 		currentMenu = gameOverMenu;
@@ -137,6 +159,9 @@ void MainGame::Draw()
 		break;
 	case MainGame::Pause:
 		pauseMenu->Draw();
+		break;
+	case MainGame::NextLevel:
+		winMenu->Draw();
 		break;
 	case MainGame::GameOver:
 		gameOverMenu->Draw();
@@ -172,6 +197,12 @@ void MainGame::NewGame()
 	currentState = GamePlay;
 }
 
+void MainGame::StartNextLevel()
+{
+	actorsManager->NextLevel();
+	currentState = GamePlay;
+}
+
 void MainGame::HandleEvents()
 {
 	sf::Event event;
@@ -192,6 +223,7 @@ void MainGame::HandleEvents()
 		else if (event.type == sf::Event::KeyReleased)
 		{
 			canNavigate = true;
+			canMove = true;
 		}
 	}
 }

@@ -10,6 +10,7 @@ public:
 	enum Action {
 		NewGame,
 		Continue,
+		NextLevel,
 		Quit,
 	};
 	Action action;

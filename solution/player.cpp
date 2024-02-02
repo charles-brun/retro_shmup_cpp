@@ -57,3 +57,8 @@ void Player::Move(sf::Vector2f dir)
 	}
 	velocity = newDir;
 }
+
+void Player::GainLives(int gain)
+{
+	hitPoints += gain;
+}

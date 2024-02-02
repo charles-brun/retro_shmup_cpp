@@ -10,5 +10,6 @@ public:
     void Update(float deltaTime) override;
     void Draw() override;
     void Move(sf::Vector2f dir) override;
+    void GainLives(int gain);
 };
 

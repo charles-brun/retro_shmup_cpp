@@ -152,6 +152,7 @@
     <ClCompile Include="shot.cpp" />
     <ClCompile Include="ui_manager.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="win_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vcpkg.json" />
@@ -174,6 +175,7 @@
     <ClInclude Include="shot.h" />
     <ClInclude Include="ui_manager.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="win_menu.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="cursor.png" />

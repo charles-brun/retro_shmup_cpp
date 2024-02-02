@@ -16,8 +16,11 @@ public:
 	ScoreManager* scoreManager;
 	std::vector<Actor*> actors;
 	std::vector<Actor*> actorsToRemove;
+	std::vector<Enemy*> enemies;
 	Player* player;
 	Level* level;
+	int aliveEnemies = 0;
+	bool levelEnded = false;
 	void AddActor(Actor* actor, sf::Vector2f pos);
 	void AddEnemy(Enemy::Type type);
 	void AddActorToRemove(Actor* actor);
@@ -25,7 +28,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 	void RemoveActorFromList(Actor* actorToRemove);
+	void RemoveEnemyFromList(Enemy* enemyToRemove);
 	void Reset();
+	void NextLevel();
 	~ActorsManager();
 };
 
