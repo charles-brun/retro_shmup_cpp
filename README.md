@@ -1,9 +1,9 @@
 # Retro shoot'em up 
-SFML / C++
+SFML / C++  
 Inspired from memories of the old mobile game Space Impact.
 
 ### Gameplay
-Shoot enemies to ramp up your score.
+Shoot enemies to ramp up your score.  
 Go through levels until death or boredom (for now).
 
 ### Controls
