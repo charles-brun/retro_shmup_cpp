@@ -53,10 +53,11 @@ void MainGame::HandleInputs()
 			}
 			player->Move(dir);
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+			if (canShoot && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 			{
 				player->TryToShoot();
 				canNavigate = false;
+				canShoot = false;
 			}
 		}
 	}
@@ -222,8 +223,16 @@ void MainGame::HandleEvents()
 		}
 		else if (event.type == sf::Event::KeyReleased)
 		{
+			if (event.key.code == sf::Keyboard::Key::Z
+				|| event.key.code == sf::Keyboard::Key::Q
+				|| event.key.code == sf::Keyboard::Key::S
+				|| event.key.code == sf::Keyboard::Key::D)
 			canNavigate = true;
 			canMove = true;
+			if (event.key.code == sf::Keyboard::Key::Space)
+			{
+				canShoot = true;
+			}
 		}
 	}
 }

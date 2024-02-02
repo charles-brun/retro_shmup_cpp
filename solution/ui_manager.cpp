@@ -5,11 +5,11 @@ UIManager::UIManager(sf::RenderWindow* window, AssetsManager* assets) : mainWind
 {
 	score.setFont(assets->font);
 	score.setFillColor(sf::Color::Black);
-	score.setCharacterSize(28);
+	score.setCharacterSize(Utils::getFontSize(Utils::S));
 	UpdateScore(0);
 	lives.setFont(assets->font);
 	lives.setFillColor(sf::Color::Black);
-	lives.setCharacterSize(28);
+	lives.setCharacterSize(Utils::getFontSize(Utils::S));
 	lives.setPosition({5 * Utils::globalScale, 0});
 }
 

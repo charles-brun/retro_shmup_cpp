@@ -11,12 +11,12 @@ void WinMenu::Draw()
 WinMenu::WinMenu(sf::RenderWindow* window, AssetsManager* assets) : Menu(window, assets)
 {
 	score.setFillColor(sf::Color::Black);
-	score.setCharacterSize(42);
+	score.setCharacterSize(Utils::getFontSize(Utils::M));
 	score.setFont(assets->font);
 
 	winText.setString("Level complete!");
 	winText.setFillColor(sf::Color::Black);
-	winText.setCharacterSize(56);
+	winText.setCharacterSize(Utils::getFontSize(Utils::M));
 	winText.setFont(assets->font);
 
 	sf::Vector2f textSize = winText.getGlobalBounds().getSize();
@@ -26,11 +26,9 @@ WinMenu::WinMenu(sf::RenderWindow* window, AssetsManager* assets) : Menu(window,
 	winText.setPosition({ textPosX, textPosY });
 
 	float scale = Utils::globalScale;
-	float spacing = 7;
-	float margin = 15;
-	nextLevel.Initialize("Next level", GetNextLinePos(winText, margin, spacing + 3), MenuChoice::NextLevel, assets);
+	nextLevel.Initialize("Next level", GetNextLinePos(winText, 2 * (scale + 2), 2 * (scale + 2)), MenuChoice::NextLevel, assets);
 	choices.push_back(&nextLevel);
-	quit.Initialize("Quit", GetNextLinePos(nextLevel.text, 0, spacing), MenuChoice::Quit, assets);
+	quit.Initialize("Quit", GetNextLinePos(nextLevel.text, 0, scale), MenuChoice::Quit, assets);
 	choices.push_back(&quit);
 	SetCursorOnChoice();
 }

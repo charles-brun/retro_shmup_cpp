@@ -9,6 +9,7 @@ Player::Player() : Actor{}
 {
 	SetSide(Side::Ally);
 	texture_name = "player";
+	shootCD = 0.1f;
 	speed = 60.0;
 	vulnCD = 1.2f;
 }

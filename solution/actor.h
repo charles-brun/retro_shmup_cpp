@@ -23,7 +23,7 @@ public:
 	virtual void Destroy();
 	bool invulnerable = false;
 	float vulnTimer = 0;
-	float vulnCD = 0.1f;
+	float vulnCD = 0.05f;
 	int hitPoints = 1;
 	int scoreValue = 0;
 	int damage = 0;

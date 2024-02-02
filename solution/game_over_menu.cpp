@@ -11,12 +11,12 @@ void GameOverMenu::Draw()
 GameOverMenu::GameOverMenu(sf::RenderWindow* window, AssetsManager* assets): Menu(window, assets)
 {
 	score.setFillColor(sf::Color::Black);
-	score.setCharacterSize(42);
+	score.setCharacterSize(Utils::getFontSize(Utils::M));
 	score.setFont(assets->font);
 
 	gameOverText.setString("GAME OVER");
 	gameOverText.setFillColor(sf::Color::Black);
-	gameOverText.setCharacterSize(56);
+	gameOverText.setCharacterSize(Utils::getFontSize(Utils::L));
 	gameOverText.setFont(assets->font);
 
 	sf::Vector2f textSize = gameOverText.getGlobalBounds().getSize();
@@ -26,11 +26,9 @@ GameOverMenu::GameOverMenu(sf::RenderWindow* window, AssetsManager* assets): Men
 	gameOverText.setPosition({ textPosX, textPosY });
 
 	float scale = Utils::globalScale;
-	float spacing = 7;
-	float margin = 15;
-	newGame.Initialize("New game", GetNextLinePos(gameOverText, margin, spacing + 3), MenuChoice::NewGame, assets);
+	newGame.Initialize("New game", GetNextLinePos(gameOverText, 2 * (scale + 2), 2 * (scale + 2)), MenuChoice::NewGame, assets);
 	choices.push_back(&newGame);
-	quit.Initialize("Quit", GetNextLinePos(newGame.text, 0, spacing), MenuChoice::Quit, assets);
+	quit.Initialize("Quit", GetNextLinePos(newGame.text, 0, scale), MenuChoice::Quit, assets);
 	choices.push_back(&quit);
 	SetCursorOnChoice();
 }

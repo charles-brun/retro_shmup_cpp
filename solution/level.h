@@ -9,7 +9,7 @@ public:
 	Enemy* Spawn(Enemy::Type type);
 	bool CanSpawn();
 	void ResetSpawnCD();
-	void Initialize(int _enemyNumber = 10, int _frequency = 60);
+	void Initialize(int _enemyNumber = 15, int _frequency = 60);
 	Enemy::Type GetNextEnemy();
 	std::vector<Enemy::Type> enemyList;
 	int currentSpawnIndex = 0;

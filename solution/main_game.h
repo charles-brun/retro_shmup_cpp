@@ -21,6 +21,7 @@ public:
 	int score = 0;
 	bool canNavigate;
 	bool canMove;
+	bool canShoot;
 	enum GameState {
 		StartMenu,
 		GamePlay,
