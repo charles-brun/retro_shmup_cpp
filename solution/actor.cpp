@@ -8,7 +8,7 @@ Actor::Actor()
 
 void Actor::Load(AssetsManager* assetsManager)
 {
-	SetSprite(assetsManager->textures[texture_name], { 0, 0 });
+	SetSprite(assetsManager->textures[textureNameNormal], { 0, 0 });
 }
 
 void Actor::Update(float deltaTime)
@@ -93,7 +93,7 @@ void Actor::ResetShootCD()
 	shootTimer = shootCD;
 }
 
-void Actor::TakeDamage(int _damage)
+void Actor::TakeDamage(int _damage, AssetsManager* assetsManager)
 {
 	if (!invulnerable)
 	{

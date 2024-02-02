@@ -181,6 +181,7 @@
     <Image Include="cursor.png" />
     <Image Include="player.png" />
     <Image Include="rocket.png" />
+    <Image Include="rocket_damaged.png" />
     <Image Include="shot.png" />
   </ItemGroup>
   <ItemGroup>

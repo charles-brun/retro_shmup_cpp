@@ -145,6 +145,9 @@
     <Image Include="cursor.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="rocket_damaged.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="munro.ttf">

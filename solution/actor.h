@@ -10,7 +10,6 @@ public:
 	virtual void Load(AssetsManager* assetsManager);
 	virtual void Update(float deltaTime);
 	virtual void Draw();
-	void SetSprite(sf::Texture* texture, sf::Vector2f offset);
 	virtual void Move(sf::Vector2f dir);
 	virtual void SetPosition(sf::Vector2f pos);
 	virtual sf::Vector2f GetPosition();
@@ -19,7 +18,7 @@ public:
 	virtual sf::FloatRect GetBounds();
 	virtual void TryToShoot();
 	virtual void ResetShootCD();
-	virtual void TakeDamage(int _damage);
+	virtual void TakeDamage(int _damage, AssetsManager* assetsManager);
 	virtual void Destroy();
 	bool invulnerable = false;
 	float vulnTimer = 0;
@@ -35,11 +34,13 @@ public:
 	bool alive = true;
 	sf::Vector2f velocity = { 0, 0 };
 	sf::Sprite sprite;
-	std::string texture_name;
+	std::string textureNameNormal;
+	std::string textureNameDamaged;
 	static enum Side {
 		Ally,
 		Enemy,
 	};
+	void SetSprite(sf::Texture* texture, sf::Vector2f offset);
 	virtual void SetSide(Actor::Side _side);
 	Actor::Side GetSide();
 protected:

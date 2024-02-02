@@ -3,7 +3,7 @@
 
 Shot::Shot()
 {
-	texture_name = "shot";
+	textureNameNormal = "shot";
 	speed = 100.0f;
 	damage = 1;
 }

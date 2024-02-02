@@ -12,7 +12,8 @@ public:
 		{"cursor", "cursor.png"},
 		{"player", "player.png"},
 		{"shot", "shot.png"},
-		{"rocket", "rocket.png"}
+		{"rocket", "rocket.png"},
+		{"rocket_damaged", "rocket_damaged.png"}
 	};
 	std::string font_path = "munro.ttf";
 	sf::Font font;

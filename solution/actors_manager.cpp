@@ -84,7 +84,7 @@ void ActorsManager::Update(float deltaTime)
 			{
 				if (actors[i]->GetBounds().intersects(actors[j]->GetBounds()))
 				{
-					actors[i]->TakeDamage(actors[j]->damage);
+					actors[i]->TakeDamage(actors[j]->damage, assetsManager);
 					if (actors[i] == player)
 					{
 						scoreManager->UpdateLives(player->hitPoints);
