@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClCompile Include="actor.cpp" />
     <ClCompile Include="assets_manager.cpp" />
+    <ClCompile Include="asteroid.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="game_over_menu.cpp" />
     <ClCompile Include="level.cpp" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="actor.h" />
     <ClInclude Include="assets_manager.h" />
+    <ClInclude Include="asteroid.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="game_over_menu.h" />
     <ClInclude Include="level.h" />
@@ -178,6 +180,8 @@
     <ClInclude Include="win_menu.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="asteroid.png" />
+    <Image Include="asteroid_damaged.png" />
     <Image Include="cursor.png" />
     <Image Include="player.png" />
     <Image Include="rocket.png" />

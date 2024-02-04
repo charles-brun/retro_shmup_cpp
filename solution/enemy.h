@@ -6,9 +6,11 @@ class Enemy :
 public:
     Enemy();
     void Update(float deltaTime) override;
-    static enum Type 
+    void TakeDamage(int _damage, AssetsManager* assetsManager) override;
+    static enum Type
     {
         Rocket,
+        Asteroid,
         TYPE_SIZE,
     };
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "level.h"
 #include "rocket.h"
+#include "asteroid.h"
 #include <cassert>
 
 Level::Level()
@@ -49,6 +50,9 @@ Enemy* Level::Spawn(Enemy::Type type)
 	{
 	case Enemy::Rocket:
 		return new Rocket();
+		break;
+	case Enemy::Asteroid:
+		return new Asteroid();
 		break;
 	default:
 		break;

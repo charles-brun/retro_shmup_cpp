@@ -8,6 +8,7 @@ class Actor
 public:
 	Actor();
 	virtual void Load(AssetsManager* assetsManager);
+	virtual void Initialize(sf::Vector2f spawnPos);
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 	virtual void Move(sf::Vector2f dir);
@@ -34,6 +35,7 @@ public:
 	bool alive = true;
 	sf::Vector2f velocity = { 0, 0 };
 	sf::Sprite sprite;
+	sf::Sprite spriteDamaged;
 	std::string textureNameNormal;
 	std::string textureNameDamaged;
 	static enum Side {

@@ -11,6 +11,10 @@ void Actor::Load(AssetsManager* assetsManager)
 	SetSprite(assetsManager->textures[textureNameNormal], { 0, 0 });
 }
 
+void Actor::Initialize(sf::Vector2f spawnPos)
+{
+}
+
 void Actor::Update(float deltaTime)
 {
 	position += velocity * deltaTime * speed * Utils::globalScale;

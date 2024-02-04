@@ -30,3 +30,12 @@ void Enemy::Update(float deltaTime)
 		toDelete = true;
 	}
 }
+
+void Enemy::TakeDamage(int _damage, AssetsManager* assetsManager)
+{
+	Actor::TakeDamage(_damage, assetsManager);
+	if (hitPoints <= 1 && textureNameDamaged != "")
+	{
+		SetSprite(assetsManager->textures[textureNameDamaged], { 0, 0 });
+	}
+}

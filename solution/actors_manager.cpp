@@ -24,9 +24,11 @@ void ActorsManager::AddActor(Actor* actor, sf::Vector2f pos)
 void ActorsManager::AddEnemy(Enemy::Type type)
 {
 	Enemy* enemy = level->Spawn(type);
-	enemy->Load(assetsManager);
 	int rdm = Utils::getMarginTop() + std::rand() % (int)(Utils::getMarginBot() - enemy->GetSpriteSize().y - Utils::getMarginTop());
-	AddActor(enemy, sf::Vector2f(Utils::getWindowSize().x - 50, rdm));
+	sf::Vector2f spawnPos = sf::Vector2f(Utils::getWindowSize().x - 50, rdm);
+	enemy->Load(assetsManager);
+	enemy->Initialize(spawnPos);
+	AddActor(enemy, spawnPos);
 	enemies.push_back(enemy);
 	aliveEnemies++;
 }
@@ -178,7 +180,7 @@ void ActorsManager::NextLevel()
 	delete level;
 	level = new Level();
 	level->Initialize();
-	player->GainLives(1);
+	player->GainLives(0);
 	scoreManager->UpdateLives(player->hitPoints);
 	player->SetPosition({ player->GetSpriteSize().x, Utils::getWindowSize().y / 2 });
 	levelEnded = false;
